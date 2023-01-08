@@ -10,7 +10,7 @@ ADD . /app
 RUN npm install
 
 # Add the environment variables
-ENV JWT_SECRET=mydirtylittlesecret
+ENV JWT_SECRET=mysecret
 
 ENV REDIS_HOST=redis
 ENV REDIS_PORT=6379
