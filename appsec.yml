@@ -1,0 +1,28 @@
+stages:
+  - build
+  - deploy
+
+
+build:
+  stage: build
+  script:
+    - echo "Building Docker image..."
+    - docker build -t gateway:latest -f Dockerfile .
+    - docker tag gateway:latest carlossawan/gateway:latest
+    - echo "Pushing Docker image to the registry..."
+    - docker push carlossawan/gateway:latest
+  only:
+    - master
+
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying the application..."
+    - ssh ubuntu@13.51.106.109 "docker pull carlossawan/gateway:latest && docker run -d --name gateway -p 8080:8080 gateway:latest"
+  only:
+    - master
+  environment:
+    name: production
+    url: http://my-production-server.com
+
