@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Docker Hub...
+      - docker login --username carlossawan --password Bouelci1234
+  build:
+    commands:
+      - echo Building the Docker image...
+      - docker build -t gateway:latest -f Dockerfile .
+      - docker tag gateway:latest carlossawan/gateway:latest
+  post_build:
+    commands:
+      - echo Pushing the Docker image to Docker Hub...
+      - docker push carlossawan/gateway:latest
+artifacts:
+  files:
+    - appspec.yml
