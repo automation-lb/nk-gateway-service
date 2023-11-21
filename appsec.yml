@@ -22,7 +22,5 @@ deploy:
     - ssh ubuntu@13.51.106.109 "docker pull carlossawan/gateway:latest && docker run -d --name gateway -p 8080:8080 gateway:latest"
   only:
     - master
-  environment:
-    name: production
-    url: http://my-production-server.com
+  
 
