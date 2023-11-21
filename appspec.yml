@@ -2,6 +2,6 @@ version: 0.0
 os: linux
 hooks:
   AfterInstall:
-    - location: nk-gateway-service/deploy.sh
+    - location: deploy.sh
       timeout: 300
       runas: root
